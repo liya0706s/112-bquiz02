@@ -162,6 +162,8 @@ function to($url)
 
 // 每一張資料表的物件變數
 $Total = new DB('total');
+$User = new DB('user');
+
 
 // 先檢查是否有拜訪
 // 自行定義命名session變數
