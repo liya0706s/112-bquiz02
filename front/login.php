@@ -3,11 +3,11 @@
         <table>
             <tr>
                 <td class="clo">帳號</td>
-                <td><input type="text" name="acc" id=""></td>
+                <td><input type="text" name="acc" id="acc"></td>
             </tr>
             <tr>
                 <td class="clo">密碼:</td>
-                <td><input type="password" name="pw" id=""></td>
+                <td><input type="password" name="pw" id="pw"></td>
             </tr>
 
             <tr>
@@ -27,16 +27,14 @@
     <script>
         function login() {
             // 使用 jQuery 的 $.post 方法發送 AJAX 請求到伺服器 './api/chk_acc.php'
-            $.post('./api/chk_acc.php', {
-                acc: $("#acc").val() // 從帳號輸入框獲取帳號
-            }, (res) => { // (res) 是一個回調函數的參數
-                if (parseInt(res) == 0) {  // 如果伺服器回傳的結果是 0（代表查無帳號）
+            $.post('./api/chk_acc.php', {acc:$("#acc").val() // 從帳號輸入框獲取帳號
+            },(res)=>{ // (res) 是一個回調函數的參數
+                if(parseInt(res)==0){  // 如果伺服器回傳的結果是 0（代表查無帳號）
                     alert("查無帳號!")
                 } else {  // 如果帳號存在
                     // 再次使用 $.post 方法發送 AJAX 請求到 './api/chk_pw.php'
-                    $.post('./api/chk_pw.php', {
-                            acc: $("#acc").val(),  // 帳號
-                            pw: $("#pw").val()  // 從密碼輸入框獲取密碼
+                    $.post('./api/chk_pw.php',{acc: $("#acc").val(),  // 帳號
+                            pw:$("#pw").val()  // 從密碼輸入框獲取密碼
                         },
                         (res) => {
                             if (parseInt(res) == 1) {  // 如果密碼正確（伺服器回傳 1）
