@@ -57,8 +57,7 @@
 						}
 						?>
 					</span>
-					<div class="">
-					<h2>123456</h2>	
+					<div class="">	
 						<?php
 						$do = $_GET['do'] ?? 'main';
 						$file = "./front/{$do}.php";
