@@ -2,10 +2,10 @@
 <a class="blo" href="?do=news">最新文章管理</a> 來的 -->
 
 <form action="./api/edit_news.php" method="post">
-    <table class="width:75%;text-align:center">
+    <table style="width:95%;text-align:center">
         <tr class="clo">
             <td>編號</td>
-            <td>標題</td>
+            <td class="width:70%">標題</td>
             <td>顯示</td>
             <td>刪除</td>
         </tr>
@@ -25,8 +25,15 @@
                 <!-- 編號不一定等於id -->
                 <td><?= $idx + 1 + $start; ?></td>
                 <td><?= $row['title']; ?></td>
-                <td><input type="checkbox" name="sh[]" val="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>></td>
-                <td><input type="checkbox" name="del[]" val="<?= $row['id']; ?>"></td>
+                <td>
+                    <input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>>
+                </td>
+                <td>
+                    <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
+                    <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
+                    <!-- not sure about this line code -->
+                </td>
+
             </tr>
         <?php
         }
@@ -43,7 +50,7 @@
             echo " </a> ";
         }
         // 頁數
-        for ($i=1; $i <= $pages; $i++) {
+        for ($i = 1; $i <= $pages; $i++) {
             $size = ($i == $now) ? 'font-size:22px;' : 'font-size:16px';
             echo "<a href='back.php?do=news&p=$i' style='{$size}'>";
             echo $i;
