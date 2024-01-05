@@ -163,6 +163,7 @@ function to($url)
 // 每一張資料表的物件變數
 $Total = new DB('total');
 $User = new DB('user');
+$News = new DB('news');
 
 
 // 先檢查是否有拜訪

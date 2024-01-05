@@ -15,6 +15,7 @@
             <?php
             $rows = $User->all();
             foreach ($rows as $row) {
+                // 不讓admin帳號顯示出來
                 if ($row['acc'] != 'admin') {
             ?>
                     <tr>
