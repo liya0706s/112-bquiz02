@@ -21,13 +21,18 @@
 		<div id="title">
 			<!-- 今日日期的total，是今日瀏覽次數 -->
 			<!-- sum() 參數要有欄位是total -->
-			<?= date("m月d日 l"); ?>|
-			今日瀏覽:<?= $Total->find(['date' => date("Y-m-d")])['total']; ?> |
+
+			<?php
+			$todayTotal = $Total->find(['date' => date("Y-m-d")]);
+			$todayTotalValue = $todayTotal ? $todayTotal['total'] : 0;
+			?>
+			今日瀏覽: <?= $todayTotalValue; ?> |
 			累積瀏覽: <?= $Total->sum('total'); ?>
+			
 			<a href="index.php" style="float:right">回首頁</a>
 		</div>
 		<div id="title2" title='健康促進網-回首頁'>
-		<a href="index.php"><img src="./icon/02B01.jpg" alt=""></a>	
+			<a href="index.php"><img src="./icon/02B01.jpg" alt=""></a>
 		</div>
 		<div id="mm">
 			<div class="hal" id="lef">

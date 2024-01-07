@@ -7,6 +7,7 @@
         border-radius: 5px 5px 0 0;
         text-align: center;
         background-color: #ccc;
+        /* border-bottom: 0px; */
     }
 
     .tags {
@@ -20,7 +21,7 @@
         min-height: 490px;
         margin-top: -1px;
         display: none;
-        padding:15px;
+        padding: 15px;
     }
 
     .active {
@@ -135,11 +136,19 @@
 
 <script>
     $(".tag").on('click', function() {
+        // 當任何擁有 'tag' 類別的元素被點擊時執行以下代碼
         $(".tag").removeClass('active')
+        // 移除原本擁有 'tag' 類別的元素上的 'active' 類別
         $(this).addClass('active')
+        // 給當前被點擊的元素（'this' 指向當前被點擊的元素）添加 'active' 類別
+        // acitve的css是，背景和border都是白色
+
         // 獲取被點擊的標籤的ID
         let id = $(this).attr('id').replace("sec", "section");
+        // 從當前被點擊元素的 ID 屬性獲取值，並將其中的 "sec" 字符串替換成 "section"
         $("section").hide();
+        // 隱藏所有 <section> 元素
         $("#" + id).show();
+        // 顯示 ID 與當前被點擊元素 ID 匹配的 <section> 元素
     })
 </script>
