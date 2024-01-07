@@ -1,6 +1,10 @@
 <!-- 從back.php
 <a class="blo" href="?do=news">最新文章管理</a> 來的 -->
-
+<fieldset>
+    <legend>
+        <h3>最新文章管理</h3>
+    </legend>
+    <!-- 傳送一個表單裡面放table -->
 <form action="./api/edit_news.php" method="post">
     <table style="width:95%;text-align:center">
         <tr class="clo">
@@ -67,3 +71,4 @@
     </div>
     <div class="ct"><input type="submit" value="修改確定"></div>
 </form>
+</fieldset>

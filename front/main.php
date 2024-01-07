@@ -151,5 +151,6 @@
         // 隱藏所有 <section> 元素
         $("#" + id).show();
         // 顯示 ID 與"當前被點擊"元素 ID 匹配的 <section> 元素
+        // section01會是 #section01.show()
     })
 </script>

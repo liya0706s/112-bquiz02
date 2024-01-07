@@ -4,6 +4,7 @@
     </legend>
 
     <form action="./api/edit_user.php" method="post">
+    <!-- back/admin.php是在 back.php? why?  -->
         <table style="width:55%;margin:auto;text-align:center">
             <tr>
                 <!-- 內建css底色灰色clo -->
@@ -15,7 +16,7 @@
             <?php
             $rows = $User->all();
             foreach ($rows as $row) {
-                // 不讓admin帳號顯示出來
+                // 帳號是admin以外的，都會顯示出來
                 if ($row['acc'] != 'admin') {
             ?>
                     <tr>
@@ -37,7 +38,7 @@
         </div>
     </form>
 
-    <h1>新增會員</h1>
+    <h2>新增會員</h2>
     <span style="color:red">*請設定您要註冊的帳號及密碼(最常12個字元)</span>
     <table>
         <tr>
@@ -65,6 +66,8 @@
         </tr>
     </table>
 </fieldset>
+
+
 <!-- 要有相對應的id -->
 <!-- input 是抓val -->
 <script>
