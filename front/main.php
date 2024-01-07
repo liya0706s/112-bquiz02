@@ -7,7 +7,7 @@
         border-radius: 5px 5px 0 0;
         text-align: center;
         background-color: #ccc;
-        /* border-bottom: 0px; */
+        border-bottom: 0px;
     }
 
     .tags {
@@ -146,9 +146,10 @@
         // 獲取被點擊的標籤的ID
         let id = $(this).attr('id').replace("sec", "section");
         // 從當前被點擊元素的 ID 屬性獲取值，並將其中的 "sec" 字符串替換成 "section"
+        // 如果sec01會被替換成section01
         $("section").hide();
         // 隱藏所有 <section> 元素
         $("#" + id).show();
-        // 顯示 ID 與當前被點擊元素 ID 匹配的 <section> 元素
+        // 顯示 ID 與"當前被點擊"元素 ID 匹配的 <section> 元素
     })
 </script>

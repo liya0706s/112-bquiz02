@@ -47,7 +47,7 @@
 					<!-- 會員登入上方 放跑馬燈 -->
 					<!-- marquee是block, 會把會員登入擠下去, 要加上style inline-block -->
 					<marquee style="width:80%; display:inline-block;">請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章</marquee>
-
+					<!-- span寬度影響和marquee 的排版 -->
 					<span style="width:16%; display:inline-block;">
 						<?php
 						if (!isset($_SESSION['user'])) {
@@ -58,6 +58,7 @@
 						?>
 							歡迎, <?= $_SESSION['user']; ?>
 							<button onclick="location.href='./api/logout.php'">登出</button>
+							<!-- 判斷如果登入是admin，有管理的按鈕 -->
 							<?php
 							if ($_SESSION['user'] == 'admin') {
 							?>

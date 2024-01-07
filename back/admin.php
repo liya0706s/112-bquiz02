@@ -4,7 +4,7 @@
     </legend>
 
     <form action="./api/edit_user.php" method="post">
-        <table style="width:55%;margin:auto">
+        <table style="width:55%;margin:auto;text-align:center">
             <tr>
                 <!-- 內建css底色灰色clo -->
                 <td class="clo">帳號</td>
@@ -20,6 +20,8 @@
             ?>
                     <tr>
                         <td><?= $row['acc']; ?></td>
+                        <!-- str_rapeat 重覆特定字元 -->
+                        <!-- 米字號是要重複的字，mb_strlen重複幾次 -->
                         <td><?= str_repeat("*", mb_strlen($row['pw'])); ?></td>
                         <td><input type="checkbox" name="del[]" value="<?= $row['id']; ?>"></td>
                     </tr>
@@ -28,6 +30,7 @@
             }
             ?>
         </table>
+        <!-- 兩個按鈕要寫在table下方 -->
         <div class="ct">
             <input type="submit" value="確定刪除">
             <input type="reset" value="清空選取">

@@ -55,6 +55,7 @@
 						?>
 							歡迎, <?= $_SESSION['user']; ?>
 							<button onclick="location.href='./api/logout.php'">登出</button>
+							<!-- 判斷如果登入是admin，有管理的按鈕 -->
 							<?php
 							if ($_SESSION['user'] == 'admin') {
 							?>
