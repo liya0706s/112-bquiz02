@@ -42,7 +42,7 @@
                     <td>
                         <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
                         <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
-                        <!-- not sure about this line code -->
+                        <!-- 送hidden id  -->
                     </td>
 
                 </tr>
