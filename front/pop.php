@@ -36,8 +36,19 @@
                     </div>
                 </td>
                 <td class="ct">
-                    <span id="g<?=$row['id'];?>"></span>
+                    <span> <?=$row['good'];?> </span>
                     個人說<img src="../icon/02B03.jpg" style="width:20px">
+                    <!-- 判斷有沒有登入，登入才可以按讚 -->
+                    <!-- 有取消讚，是有按過讚的情況下(瀏覽器會記住) -->
+                    <?php
+                   if(isset($_SESSION['user'])){
+                    if($Log->count(['news'=>$row['id'],'acc'=>$_SESSION['user']])>0){
+                        echo "<a href='Javascript:good({$row['id']})'>收回讚</a>";
+                    }else{
+                        echo "<a href='Javascript:good({$row['id']})'>讚</a>";
+                    }
+                }
+                    ?>
                 </td>
             </tr>
         <?php

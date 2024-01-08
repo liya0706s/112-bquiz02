@@ -4,10 +4,10 @@
         <tr>
             <th width="30%">標題</th>
             <th width="50%">內容</th>
-            <th width=""></th>
+            <th></th>
         </tr>
         <?php
-        $total = $News->count();
+        $total = $News->count(['sh'=>1]);
         $div = 5;  //一頁五筆資料
         $pages = ceil($total / $div);
         $now = $_GET['p'] ?? 1;
@@ -18,14 +18,34 @@
         foreach ($rows as $row) {
         ?>
             <tr>
-                <!-- 一般的id不能只有數字要有英文字，data-id -->
-                <td> <div class='title' data-id="<?=$row['id'];?>" style='cursor:pointer'> <?= $row['title']; ?> </div></td>
-                <!-- 字串中取部分 substr 從0開始取25個字-->
-                <td> 
-                    <div id="short<?=$row['id'];?>"> <?= mb_substr($row['news'], 0, 25); ?>... </div> 
-                    <div id="all<?=$row['id'];?>" style='display:none'> <?=$row['news'];?></div>
+                <!-- 一般的id不能只有數字要有英文字，data-id才可以只有數字 -->
+                <td>
+                    <div class='title' data-id="<?= $row['id']; ?>" style='cursor:pointer'> <?= $row['title']; ?> </div>
                 </td>
-                <td></td>
+                <!-- 字串中取部分 substr 從0開始取25個字-->
+                <td>
+                    <div id="short<?= $row['id']; ?>">
+                        <?= mb_substr($row['news'], 0, 25); ?>...
+                    </div>
+                    <div id="all<?= $row['id']; ?>" style='display:none'>
+                        <?= $row['news']; ?>
+                    </div>
+                </td>
+                <td>
+                    <?php
+                    // 1.判斷有沒有登入
+                    if (isset($_SESSION['user'])) {
+                        // 2.判斷有沒有按過讚
+                        if ($Log->count(['news' => $row['id'], 'acc' => $_SESSION['user']]) > 0) {
+                            // 這篇文章 $row['id'] 如果count()==1代表有被按讚過
+                            echo "<a href='Javascript:good({$row['id']})'>收回讚</a>";
+                            // 帳號session就有
+                        } else {
+                            echo "<a href='Javascript:good({$row['id']})'>讚</a>";
+                        }
+                    }
+                    ?>
+                </td>
             </tr>
         <?php
         }
@@ -65,9 +85,11 @@
 </fieldset>
 <script>
     // 要用function才可以用$(this)點下去的對象 等同於回乎函式e.target(event.target)
-    $(".title").on('click',(e)=>{
-        let id =$(e.target).data('id');
+    $(".title").on('click', (e) => {
+        let id = $(e.target).data('id');
         $(`#short${id},#all${id}`).toggle();
         // 在重音符裡面大括號$ 可以放變數
-        })
+    })
+
+    
 </script>
