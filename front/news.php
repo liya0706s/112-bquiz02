@@ -31,7 +31,7 @@
                         <?= $row['news']; ?>
                     </div>
                 </td>
-                <td>
+                <td class="ct">
                     <?php
                     // 1.判斷有沒有登入
                     if (isset($_SESSION['user'])) {
