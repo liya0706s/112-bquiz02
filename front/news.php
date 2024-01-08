@@ -7,17 +7,55 @@
             <th width=""></th>
         </tr>
         <?php
-        $rows = $News->all(['sh' => 1]);
+        $total = $News->count();
+        $div = 5;  //一頁五筆資料
+        $pages = ceil($total / $div);
+        $now = $_GET['p'] ?? 1;
+        // GET p是直接呼應到網址 isset判斷??有的話是 $now代表當前頁數
+        $start = ($now - 1) * $div;
+
+        $rows = $News->all(['sh' => 1], " limit $start,$div");
         foreach ($rows as $row) {
         ?>
             <tr>
                 <td><?= $row['title']; ?></td>
                 <!-- 字串中取部分 substr 從0開始取25個字-->
-                <td><?=mb_substr($row['news'],0,25);?>...</td>
+                <td><?= mb_substr($row['news'], 0, 25); ?>...</td>
                 <td></td>
             </tr>
         <?php
         }
         ?>
     </table>
+    <div class="ct">
+        <?php
+        // 上一頁
+        // 如果(現在頁碼-1)>0, 代表有上一頁
+        if ($now - 1 > 0) {
+            $prev = $now - 1;
+            echo "<a href='?do=news&p=$prev'>";
+            // ?代表當前頁
+            // echo "<a href='index.php?do=news&p=$prev'>";
+            echo " < ";
+            echo " </a> ";
+        }
+        // 當前頁和全部頁數
+        for ($i = 1; $i <= $pages; $i++) {
+            $size = ($i == $now) ? 'font-size:22px;' : 'font-size:16px';
+            // 設定頁碼的尺寸，如果$i是當前頁$now,文字尺寸是22px 其他頁碼是16px
+            echo "<a href='?do=news&p=$i' style='$size'> ";
+            echo $i;  // 頁數
+            echo " </a>";
+        }
+        // 下一頁
+        // 小於"等於"總共的頁數
+        if ($now + 1 <= $pages) {
+            $next = $now + 1;
+            echo "<a href='?do=news&p=$next'>";
+            echo " > ";
+            echo "</a>";
+        }
+        ?>
+    </div>
+
 </fieldset>
