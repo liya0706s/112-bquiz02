@@ -5,6 +5,7 @@
         <h3>最新文章管理</h3>
     </legend>
     <!-- 傳送一個表單裡面放table -->
+    <!-- back/news.php是在寫程式的畫面用分類，其實back.php?do=news是include在back.php這頁 -->
     <form action="./api/edit_news.php" method="post">
         <table style="width:95%;text-align:center">
             <tr class="clo">

@@ -11,11 +11,27 @@
 	<link href="./css/css.css" rel="stylesheet" type="text/css">
 	<script src="./js/jquery-1.9.1.min.js"></script>
 	<script src="./js/js.js"></script>
+	<style>
+		.pop {
+			background: rgba(51, 51, 51, 0.8);
+			color: #FFF;
+			height: 300px;
+			width: 300px;
+			position: absolute;
+			/* 用absolute要有一層定位 relative否則他只會在固定的位置 */
+			display: none;
+			z-index: 9999;
+			overflow: auto;
+			padding:10px;
+			/* 加入滾軸 */
+		}
+	</style>
 </head>
 
 <body>
-	<div id="alerr" style="background:rgba(51,51,51,0.8); color:#FFF; min-height:100px; width:300px; position:fixed; display:none; z-index:9999; overflow:auto;">
-		<pre id="ssaa"></pre>
+	<!-- id alerr 是彈出視窗 -->
+	<div id="alerr" class="pop">
+		<pre></pre>
 	</div>
 	<div id="all">
 		<div id="title">
@@ -28,7 +44,7 @@
 			?>
 			今日瀏覽: <?= $todayTotalValue; ?> |
 			累積瀏覽: <?= $Total->sum('total'); ?>
-			
+
 			<a href="index.php" style="float:right">回首頁</a>
 		</div>
 		<div id="title2" title='健康促進網-回首頁'>

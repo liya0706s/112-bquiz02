@@ -21,10 +21,24 @@
         foreach ($rows as $row) {
         ?>
             <tr>
-                <td><?= $row['title']; ?></td>
+                <td>
+                    <div class='title' data-id="<?= $row['id']; ?>"> <?= $row['title']; ?></div>
+                </td>
                 <!-- 字串中取部分 substr 從0開始取25個字-->
-                <td><?= mb_substr($row['news'], 0, 25); ?>...</td>
-                <td></td>
+                <!-- position:relative 呼應index style的absolute -->
+                <td style="position: relative;">
+                    <div>
+                        <?= mb_substr($row['news'], 0, 25); ?>...
+                    </div>
+                    <div id="p<?= $row['id']; ?>" class="pop">
+                        <h3 style="color:skyblue"><?= $row['title']; ?></h3>
+                        <pre><?= $row['news']; ?></pre>
+                    </div>
+                </td>
+                <td class="ct">
+                    <span id="g<?=$row['id'];?>"></span>
+                    個人說<img src="../icon/02B03.jpg" style="width:20px">
+                </td>
             </tr>
         <?php
         }
@@ -60,3 +74,13 @@
         ?>
     </div>
 </fieldset>
+<script>
+    $(".title").hover(
+        function() {
+            // 滑鼠移過去對應的顯示出來
+            $(".pop").hide()
+            let id = $(this).data('id')
+            $("#p" + id).show();
+        }
+    )
+</script>
