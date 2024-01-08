@@ -13,7 +13,7 @@
         <div style="margin-top:10px">
             <div id="opt">選項
                 <input type="text" name="option[]">
-                <!-- 多個選項有 送出資料name="option[]" -->
+                <!-- "多個"選項 送出資料name="option[]" 是陣列-->
                 <input type="button" value="更多" onclick="more()">
             </div>
         </div>
