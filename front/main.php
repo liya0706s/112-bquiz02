@@ -8,6 +8,7 @@
         text-align: center;
         background-color: #ccc;
         border-bottom: 0px;
+        cursor: pointer;
     }
 
     .tags {
