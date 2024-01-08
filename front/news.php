@@ -6,10 +6,18 @@
             <th width="50%">內容</th>
             <th width=""></th>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+        <?php
+        $rows = $News->all(['sh' => 1]);
+        foreach ($rows as $row) {
+        ?>
+            <tr>
+                <td><?= $row['title']; ?></td>
+                <!-- 字串中取部分 substr 從0開始取25個字-->
+                <td><?=mb_substr($row['news'],0,25);?>...</td>
+                <td></td>
+            </tr>
+        <?php
+        }
+        ?>
     </table>
 </fieldset>
