@@ -11,16 +11,20 @@
         $div = 5;  //一頁五筆資料
         $pages = ceil($total / $div);
         $now = $_GET['p'] ?? 1;
-        // GET p是直接呼應到網址 isset判斷??有的話是 $now代表當前頁數
+        // GET p是直接呼應到網址 isset判斷??有的話是左沒有是右 $now代表當前頁數
         $start = ($now - 1) * $div;
 
         $rows = $News->all(['sh' => 1], " limit $start,$div");
         foreach ($rows as $row) {
         ?>
             <tr>
-                <td><?= $row['title']; ?></td>
+                <!-- 一般的id不能只有數字要有英文字，data-id -->
+                <td> <div class='title' data-id="<?=$row['id'];?>" style='cursor:pointer'> <?= $row['title']; ?> </div></td>
                 <!-- 字串中取部分 substr 從0開始取25個字-->
-                <td><?= mb_substr($row['news'], 0, 25); ?>...</td>
+                <td> 
+                    <div id="short<?=$row['id'];?>"> <?= mb_substr($row['news'], 0, 25); ?>... </div> 
+                    <div id="all<?=$row['id'];?>" style='display:none'> <?=$row['news'];?></div>
+                </td>
                 <td></td>
             </tr>
         <?php
@@ -59,3 +63,11 @@
     </div>
 
 </fieldset>
+<script>
+    // 要用function才可以用$(this)點下去的對象 等同於回乎函式e.target(event.target)
+    $(".title").on('click',(e)=>{
+        let id =$(e.target).data('id');
+        $(`#short${id},#all${id}`).toggle();
+        // 在重音符裡面大括號$ 可以放變數
+        })
+</script>

@@ -7,7 +7,7 @@ if(isset($_POST['id'])){
         if(isset($_POST['del']) && in_array($id,$_POST['del'])){
             $News->del($id);
         }else{
-            // 為什麼用find不用all? 
+            // 為什麼用find不用all--一筆筆修改
             $news=$News->find($id);
             // 檢查現在的id有沒有在POST sh中
             $news['sh']=(isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0; 
